@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Carousel from "react-elastic-carousel";
+import Carousel from "@itseasy21/react-elastic-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../store/action/movie";
 
