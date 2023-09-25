@@ -14,7 +14,7 @@ function MovieDetail() {
 
 	useEffect(() => {
 		dispatch(getSelectedMovie(id));
-	}, []);
+	}, [dispatch, id]);
 
 	const gotoseatselection = () => {
 		setIsOpen(true);

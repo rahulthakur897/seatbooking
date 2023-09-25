@@ -10,7 +10,7 @@ function Home() {
 
 	useEffect(() => {
 		dispatch(getMovies());
-	}, []);
+	}, [dispatch]);
 
 	const breakPoints = [
 		{ width: 1, itemsToShow: 1 },

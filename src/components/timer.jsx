@@ -27,6 +27,7 @@ function Timer(props, ref) {
 			if (seconds === 0) {
 				if (minutes === 0) {
 					clearInterval(myInterval);
+					// eslint-disable-next-line no-alert
 					alert("Timout error");
 					navigate(`/home`);
 				} else {

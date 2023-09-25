@@ -14,6 +14,7 @@ function Payment() {
 	const bookmovie = () => {
 		const timer = timerRef.current.childMethod();
 		if (timer.minutes !== 0 || timer.seconds !== 0) {
+			// eslint-disable-next-line no-alert
 			alert("Ticket Booked");
 			navigate(`/home`);
 		}

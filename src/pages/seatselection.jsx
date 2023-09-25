@@ -16,11 +16,12 @@ function SeatSelection() {
 
 	useEffect(() => {
 		dispatch(getTheatreLayout());
-	}, []);
+	}, [dispatch]);
 
 	const selectSeats = (price, seatrow, seatno) => {
 		console.log(price, seatrow, seatno);
 		if (selectedMovie?.userSeatCount === selectedSeatCount) {
+			// eslint-disable-next-line no-alert
 			alert("Error: Limit exceed");
 		} else {
 			const seat = seatrow + seatno;
