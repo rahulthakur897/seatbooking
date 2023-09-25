@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
@@ -126,10 +126,10 @@ export default function Modal(props) {
 		},
 	]);
 
-	const setDefaultSeats = () => {
+	const setDefaultSeats = useCallback(() => {
 		const selected = noSeatsReq.find((seat) => seat.selected);
 		setSelectedSeats(selected);
-	};
+	}, [noSeatsReq]);
 
 	useEffect(() => {
 		const { current } = backdrop;
@@ -165,7 +165,7 @@ export default function Modal(props) {
 			document.querySelector("#root").removeAttribute("inert");
 			window.removeEventListener("keyup", keyHandler);
 		};
-	}, [open, locked, onClose]);
+	}, [open, locked, onClose, setDefaultSeats]);
 
 	const chooseNoOfSeat = (seatObj) => {
 		const choosenSeat = noSeatsReq.map((seat) => {

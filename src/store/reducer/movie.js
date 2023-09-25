@@ -100,7 +100,8 @@ const MovieReducer = (store = initState, action) => {
 				selectedSeats.push(seat);
 				updatedPrice = totalPrice + price;
 			} else {
-				selectedSeats.pop(seat);
+				const updatedSeatSel = selectedSeats.filter((i) => i !== seat);
+				selectedSeats.push([...updatedSeatSel]);
 				updatedPrice = totalPrice - price;
 			}
 			return {
