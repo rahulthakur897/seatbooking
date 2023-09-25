@@ -1,38 +1,353 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+	height: 40vmin;
+	pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* header */
+.nav {
+	width: 100%;
+	height: 64px;
+	background-color: #333545;
+	display: flex;
+	align-items: center;
+}
+.nav svg {
+	margin-left: 4rem;
+}
+.navinside {
+	margin: 0;
+	width: 60%;
+	display: flex;
+	height: 40px;
+	margin-left: 2rem;
+	align-items: center;
+}
+.pointer {
+	cursor: pointer;
+}
+.navinside > div {
+	width: 58%;
+	height: 35px;
+	border-radius: 5px;
+	background-color: white;
+	margin-left: 2%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.navinside > div > img {
+	width: 16px;
+	margin-right: 5px;
+	margin-left: 2px;
+	margin-left: 3%;
+}
+.navinside > div > input {
+	border: none;
+	border-color: transparent;
+	height: 80%;
+	width: 95%;
+	border-radius: 5px;
+	outline: none;
+}
+.navinside > span > input:focus {
+	outline: none !important;
+	border-color: white;
+}
+
+/* footer */
+.footer {
+	width: 100%;
+	height: auto;
+	background-color: #313035;
+}
+.footercenterlogo {
+	display: flex;
+	width: 100%;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	height: 125px;
+}
+.hrline {
+	flex: 1 1 0%;
+	height: 1px;
+	background: rgb(93, 93, 95);
+}
+.footerlogo {
+	padding: 0px 20px;
+}
+.socialcontainer {
+	text-align: center;
+}
+.socialicon {
+	display: inline-block;
+	margin-right: 10px;
+	width: 37px;
+	height: 37px;
+}
+.socialicon svg {
+	fill: rgb(93, 93, 95);
+}
+.socialicon svg:hover {
+	fill: white;
+}
+svg:not(:root) {
+	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+.footertext {
+	padding: 30px;
+	font-size: 11px;
+	color: rgb(102, 102, 102);
+	text-align: center;
+}
+
+/* home page */
+.maincontainer {
+	width: 100%;
+	margin: auto;
+}
+.recommended {
+	display: flex;
+	width: 95%;
+	height: 500px;
+	margin: auto;
+}
+.movielink {
+	width: 250px;
+	height: 100%;
+	margin-left: 30px;
+	color: black;
+	text-decoration: none;
+}
+.movieposter {
+	width: 210px;
+	height: 350px;
+	border-radius: 10px;
+}
+
+/* movie detail page */
+.moviecover {
+	height: 500px;
+	opacity: 1;
+	display: flex;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.leftsection {
+	height: 80%;
+	width: 20%;
+	margin-left: 70px;
+	margin-top: 40px;
+}
+.moviedetailposter {
+	height: 100%;
+	width: 100%;
+	border-radius: 10px;
+}
+.rightsection {
+	height: 90%;
+	width: 50%;
+	margin-left: 30px;
+	margin-top: 40px;
+}
+.movietitle {
+	margin: 0px;
+	color: white;
+	font-size: 35px;
+}
+.moviedesc {
+	margin-top: 10px;
+	font-weight: bold;
+	color: #ffffff;
+}
+.movietimebtn {
+	width: 100px;
+	height: 40px;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+	margin-right: 1rem;
+	font-weight: bold;
+}
+.movietimebtn:focus {
+	background-color: darkgray;
+}
+.bookticketbtn {
+	width: 200px;
+	height: 50px;
+	border-radius: 10px;
+	margin-top: 10px;
+	border: none;
+	background-color: #eb4e62;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.bookticketbtn:disabled {
+	opacity: 0.8;
+	cursor: auto;
+}
+.aboutmovie {
+	height: 150px;
+	width: 65%;
+	margin-left: 70px;
+}
+
+/* confirm seat popup */
+.seatcountcontainer {
+	justify-content: "space-evenly";
+	display: flex;
+}
+.seatcountcontainer button {
+	margin: 0.2rem;
+	height: 35px;
+}
+.activeSeatCount,
+.defaultSeatCount {
+	width: 40px;
+	height: 40px;
+	border-radius: 40px;
+	background-color: red;
+	border: 1px solid red;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.defaultSeatCount {
+	background-color: transparent;
+	border: 1px solid black;
+	color: black;
+}
+.seatselectionbtn {
+	width: 200px;
+	height: 50px;
+	border-radius: 10px;
+	margin-top: 20px;
+	border: none;
+	background-color: #eb4e62;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+/* seat selection */
+.layoutcontainer {
+	margin: 0 auto;
+	width: 80%;
+}
+.layoutrow {
+	display: flex;
+}
+.layoutrow p,
+.layoutrow button {
+	width: 20px;
+	height: 25px;
+	margin: 0;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.layoutrow button {
+	cursor: pointer;
+}
+.seatAvailable {
+	background-color: white;
+	border: 1px solid green;
+}
+.seatBooked {
+	background-color: gray;
+	border: 1px solid gray;
+}
+.seatselected {
+	background-color: green;
+	color: white;
+}
+.displayscreen {
+	width: 300px;
+	border: 1px solid green;
+	text-align: center;
+	padding: 0.4rem;
+	border-radius: 2px;
+	margin: auto;
+	margin-top: 100px;
+	margin-bottom: 40px;
+}
+.paymentbtncontainer {
+	text-align: center;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+.paymentbtn {
+	width: 200px;
+	height: 50px;
+	border-radius: 10px;
+	margin-top: 20px;
+	border: none;
+	background-color: #eb4e62;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+	margin-bottom: 15px;
+}
+
+/* payment page */
+.paymentcontainer {
+	margin: 0 auto;
+	width: 80%;
+}
+.pagetitle {
+	font-size: 24px;
+	font-weight: bold;
+	color: red;
+}
+.bookingcontainer {
+	border: 1px dotted #dbdbdb;
+	padding: 2rem;
+	position: relative;
+}
+.timercontainer {
+	position: absolute;
+	right: 10rem;
 }
