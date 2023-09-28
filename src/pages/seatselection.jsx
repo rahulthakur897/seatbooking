@@ -9,34 +9,29 @@ function SeatSelection() {
 	const navigate = useNavigate();
 	const [selTempSeats, setSelTempSeats] = useState([]);
 	const seatRef = useRef(null);
-	const [selectedSeatCount, setSelectedSeatCount] = useState(0);
 	const dispatch = useDispatch();
-	const { theatreLayout, selectedMovie, selectedSeats, totalPrice } =
-		useSelector((state) => state.movie);
+	const { theatreLayout, userSeatCount, selectedSeats } = useSelector(
+		(state) => state.movie,
+	);
 
 	useEffect(() => {
 		dispatch(getTheatreLayout());
-	}, [dispatch]);
+	}, [dispatch, selTempSeats]);
 
 	const selectSeats = (price, seatrow, seatno) => {
-		console.log(price, seatrow, seatno);
-		if (selectedMovie?.userSeatCount === selectedSeatCount) {
+		const seat = seatrow + seatno;
+		let alreadySelSeat = [...selTempSeats];
+		if (alreadySelSeat.indexOf(seat) > -1) {
+			alreadySelSeat = alreadySelSeat.filter((st) => st !== seat);
+		} else if (userSeatCount === alreadySelSeat.length) {
 			// eslint-disable-next-line no-alert
 			alert("Error: Limit exceed");
+			return;
 		} else {
-			const seat = seatrow + seatno;
-			let alreadySelSeat = [...selTempSeats];
-			if (alreadySelSeat.indexOf(seat) !== -1) {
-				alreadySelSeat = alreadySelSeat.filter((i) => i !== seat);
-			} else {
-				alreadySelSeat.push(seat);
-			}
-			setSelTempSeats(alreadySelSeat);
-			dispatch(updateSelectedSeats(price, seatrow, seatno));
-			setSelectedSeatCount((prev) => prev + 1);
+			alreadySelSeat.push(seat);
 		}
-		// seatRef.current.classList.add("seatselected");
-		// seatRef.current.style.backgroundColor = "green";
+		setSelTempSeats(alreadySelSeat);
+		dispatch(updateSelectedSeats(price, seatrow, seatno));
 	};
 
 	const gotoPay = () => {
@@ -98,7 +93,7 @@ function SeatSelection() {
 						className="paymentbtn"
 						onClick={() => gotoPay()}
 					>
-						Pay Rs. {totalPrice}
+						Proceed to Pay
 					</button>
 				</div>
 			)}

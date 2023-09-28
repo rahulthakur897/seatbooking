@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Carousel from "@itseasy21/react-elastic-carousel";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovies } from "../store/action/movie";
+import { getMovies, resetSelectedSeats } from "../store/action/movie";
 
 function Home() {
 	const dispatch = useDispatch();
@@ -10,6 +10,7 @@ function Home() {
 
 	useEffect(() => {
 		dispatch(getMovies());
+		dispatch(resetSelectedSeats());
 	}, [dispatch]);
 
 	const breakPoints = [

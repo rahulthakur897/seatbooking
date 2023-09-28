@@ -179,10 +179,10 @@ export default function Modal(props) {
 		});
 		setNoSeatsReq(choosenSeat);
 		setSelectedSeats(seatObj);
-		dispatch(userSeatCount(seatObj.value));
 	};
 
 	const gotoseatselection = () => {
+		dispatch(userSeatCount(selectedSeats.value));
 		navigate(`/seatselection/${movieId}`);
 	};
 

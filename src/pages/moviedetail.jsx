@@ -3,17 +3,17 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { getSelectedMovie, userSelectedTiming } from "../store/action/movie";
+import { getMovieDetailById, userSelectedTiming } from "../store/action/movie";
 import Modal from "../components/modal/confirmseat";
 
 function MovieDetail() {
 	const { id } = useParams();
 	const [isOpen, setIsOpen] = useState(false);
 	const dispatch = useDispatch();
-	const { selectedMovie } = useSelector((state) => state.movie);
+	const { selectedMovie, userMovieTime } = useSelector((state) => state.movie);
 
 	useEffect(() => {
-		dispatch(getSelectedMovie(id));
+		dispatch(getMovieDetailById(id));
 	}, [dispatch, id]);
 
 	const gotoseatselection = () => {
@@ -70,7 +70,7 @@ function MovieDetail() {
 					</div>
 					<button
 						type="button"
-						disabled={!selectedMovie?.userMovieTime}
+						disabled={!userMovieTime}
 						onClick={() => gotoseatselection()}
 						className="bookticketbtn"
 					>

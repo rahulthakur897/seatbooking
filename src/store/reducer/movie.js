@@ -1,25 +1,24 @@
 import {
 	IS_LOADING,
 	GET_MOVIE_SUCCESS,
+	GET_MOVIE_BY_ID_SUCCESS,
 	FILTER_MOVIE,
-	SELECTED_MOVIE,
 	SELECTED_MOVIE_TIMING,
 	MOVIE_SEAT_COUNT,
 	THEATRE_LAYOUT_SUCCESS,
 	UPDATE_SEAT_PREFRENCE,
+	RESET_SEAT_SELECTION,
 } from "../constant";
 
 const initState = {
-	movies: localStorage.getItem("movies")
-		? JSON.parse(localStorage.getItem("movies"))
-		: [],
+	movies: [],
 	allMovies: [],
-	selectedMovie: localStorage.getItem("selectedMovie")
-		? JSON.parse(localStorage.getItem("selectedMovie"))
-		: {},
+	selectedMovie: {},
 	isLoading: false,
 	theatreLayout: [],
 	selectedSeats: [],
+	userMovieTime: "",
+	userSeatCount: 0,
 	totalPrice: 0,
 };
 
@@ -32,7 +31,6 @@ const MovieReducer = (store = initState, action) => {
 			};
 		}
 		case GET_MOVIE_SUCCESS: {
-			localStorage.setItem("movies", JSON.stringify(action.response));
 			return {
 				...store,
 				movies: action.response,
@@ -55,42 +53,27 @@ const MovieReducer = (store = initState, action) => {
 				movies: filteredList,
 			};
 		}
-		case SELECTED_MOVIE: {
-			const { movies } = store;
-			const movieId = action.payload || localStorage.getItem("selectedMovieId");
-			const selectedMovie = movies.find(
-				(mov) => parseInt(mov.id, 10) === parseInt(movieId, 10),
-			);
-			localStorage.setItem("selectedMovie", JSON.stringify(selectedMovie));
+		case GET_MOVIE_BY_ID_SUCCESS:
 			return {
 				...store,
-				selectedMovie,
-				selectedSeats: [],
-				totalPrice: 0,
+				selectedMovie: action.response,
 			};
-		}
 		case SELECTED_MOVIE_TIMING: {
-			const { selectedMovie } = store;
-			selectedMovie.userMovieTime = action.payload;
 			return {
 				...store,
-				selectedMovie,
+				userMovieTime: action.payload,
 			};
 		}
 		case MOVIE_SEAT_COUNT: {
-			const { selectedMovie } = store;
-			selectedMovie.userSeatCount = action.payload;
-			localStorage.setItem("selectedMovie", JSON.stringify(selectedMovie));
 			return {
 				...store,
-				selectedMovie,
+				userSeatCount: action.payload,
 			};
 		}
 		case THEATRE_LAYOUT_SUCCESS: {
-			const theatreLayout = action.response;
 			return {
 				...store,
-				theatreLayout,
+				theatreLayout: action.response,
 			};
 		}
 		case UPDATE_SEAT_PREFRENCE: {
@@ -112,6 +95,14 @@ const MovieReducer = (store = initState, action) => {
 				totalPrice: updatedPrice,
 			};
 		}
+		case RESET_SEAT_SELECTION:
+			return {
+				...store,
+				selectedSeats: [],
+				totalPrice: 0,
+				userMovieTime: "",
+				userSeatCount: 0,
+			};
 		default:
 			return store;
 	}

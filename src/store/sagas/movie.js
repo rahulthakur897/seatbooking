@@ -4,6 +4,8 @@ import {
 	IS_LOADING,
 	GET_MOVIE,
 	GET_MOVIE_SUCCESS,
+	GET_MOVIE_BY_ID,
+	GET_MOVIE_BY_ID_SUCCESS,
 	THEATRE_LAYOUT,
 	THEATRE_LAYOUT_SUCCESS,
 	API_FAILURE,
@@ -49,7 +51,22 @@ function* getTheatreLayout() {
 	}
 }
 
+function* getMovieById(data) {
+	try {
+		yield put({ type: IS_LOADING });
+		const movieId = data.payload;
+		const movResp = yield call(loadMovies);
+		const filteredMovie = movResp.movies.find(
+			(mov) => parseInt(mov.id, 10) === parseInt(movieId, 10),
+		);
+		yield put({ type: GET_MOVIE_BY_ID_SUCCESS, response: filteredMovie });
+	} catch (error) {
+		yield put({ type: API_FAILURE, error: error.message });
+	}
+}
+
 export default function* getMovieSaga() {
 	yield takeLatest(GET_MOVIE, getMovies);
+	yield takeLatest(GET_MOVIE_BY_ID, getMovieById);
 	yield takeLatest(THEATRE_LAYOUT, getTheatreLayout);
 }

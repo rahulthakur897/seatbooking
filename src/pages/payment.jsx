@@ -7,9 +7,8 @@ import Timer from "../components/timer";
 function Payment() {
 	const timerRef = useRef(null);
 	const navigate = useNavigate();
-	const { selectedMovie, selectedSeats, totalPrice } = useSelector(
-		(state) => state.movie,
-	);
+	const { selectedMovie, userMovieTime, selectedSeats, totalPrice } =
+		useSelector((state) => state.movie);
 
 	const bookmovie = () => {
 		const timer = timerRef.current.childMethod();
@@ -30,7 +29,7 @@ function Payment() {
 				<p className="moviedetail">
 					Movie: {selectedMovie?.title} - ({selectedMovie?.movieType})
 				</p>
-				<p className="moviedetail">Time: {selectedMovie?.userMovieTime}</p>
+				<p className="moviedetail">Time: {userMovieTime}</p>
 				<p className="moviedetail">
 					Selected Seats: {selectedSeats?.join(", ")} ({selectedSeats?.length}{" "}
 					Tickets)

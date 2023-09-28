@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { filterMovies } from "../store/action/movie";
 
 function Header() {
@@ -41,9 +43,13 @@ function Header() {
 				</Link>
 				<div className="navinside">
 					<div>
-						<img
-							src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png"
-							alt="search"
+						<FontAwesomeIcon
+							icon={faSearch}
+							style={{
+								color: "gray",
+								fontSize: "15px",
+								margin: "0 5px 0 10px",
+							}}
 						/>
 						<input
 							type="text"
