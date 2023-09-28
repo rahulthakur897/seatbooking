@@ -6,6 +6,15 @@ import { filterMovies } from "../store/action/movie";
 function Header() {
 	const dispatch = useDispatch();
 
+	const debounce = (func, delay) => {
+		let timeout;
+		// eslint-disable-next-line func-names
+		return function (...args) {
+			clearTimeout(timeout);
+			timeout = setTimeout(() => func(...args), delay);
+		};
+	};
+
 	return (
 		<header>
 			<nav className="nav">
@@ -39,7 +48,9 @@ function Header() {
 						<input
 							type="text"
 							placeholder="Search for Movies"
-							onChange={(e) => dispatch(filterMovies(e.target.value))}
+							onChange={(e) =>
+								debounce(dispatch(filterMovies(e.target.value)), 200)
+							}
 						/>
 					</div>
 				</div>

@@ -43,7 +43,9 @@ const MovieReducer = (store = initState, action) => {
 		case FILTER_MOVIE: {
 			const { allMovies } = store;
 			const filteredList = allMovies.filter((movie) => {
-				if (movie.title.toLowerCase().indexOf(action.payload) !== -1) {
+				if (
+					movie.title.toLowerCase().indexOf(action.payload.toLowerCase()) !== -1
+				) {
 					return movie;
 				}
 				return false;
